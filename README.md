@@ -1,1 +1,6 @@
-"# grokkingAlgorithmsExamples" 
+# grokkingAlgorithmsExamples
+
+for run the examples from into this repository run
+php fileName in your terminal 
+#for example
+php Chapter1\binarySearch.php
