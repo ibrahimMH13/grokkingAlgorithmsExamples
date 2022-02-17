@@ -36,3 +36,4 @@ foreach($idTable as $person=>$id)
 //        id: 20 | person: Bill
 //        id: 4 | person: Marc
 
+//https://medium.com/openmindonline/js-monday-11-the-hashtable-data-structure-45ce22ad4da6
