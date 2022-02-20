@@ -10,7 +10,6 @@ function search(){
     $deque->insert(2, ...["c", "d"]);   // [a, b, c, d, e, f, g]
 
     var_dump($deque);
-
     die(var_dump($deque));
 }
 

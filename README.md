@@ -1,4 +1,4 @@
-# grokking Algorithms Examples
+# grokking Algorithms Book Examples
 
 for run the examples from this repository run
 php fileName in your terminal 

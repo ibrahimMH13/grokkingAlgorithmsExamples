@@ -1,0 +1,13 @@
+version: '3'
+services:
+
+    webapp:
+        build:
+            context: ./webapp
+        volumes:
+            - "../../:/var/www/html/"
+            - "./webapp/files/php.conf:/etc/httpd/conf.d/php.conf"
+            - "./webapp/files/development.conf:/etc/apache2/sites-available/development.conf"
+        command:  sleep 1000000000
+        privileged: true
+
