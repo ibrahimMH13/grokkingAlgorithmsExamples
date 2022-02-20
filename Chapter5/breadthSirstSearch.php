@@ -1,18 +1,22 @@
 <?php
+
 /***
  * 1-A graph models a set of connections,
  */
-function search(){
-
-    $deque = new \Ds\Deque();
-    $deque->insert(0, "e");             // [e]
-    $deque->insert(1, "f");             // [e, f]
-    $deque->insert(2, "g");             // [e, f, g]
-    $deque->insert(0, "a", "b");        // [a, b, e, f, g]
-    $deque->insert(2, ...["c", "d"]);   // [a, b, c, d, e, f, g]
-
-    var_dump($deque);
-    die(var_dump($deque));
+class Dqueue extends SplQueue
+{
+}
+$queue = [];
+function search($rootNode, Dqueue $dQueue)
+{
+    if ($rootNode->lft != 0) {
+        $dQueue->enqueue($rootNode->lft);
+    }
+    if ($rootNode->rgt != 0) {
+        $dQueue->enqueue($rootNode->rgt);
+    }
 }
 
-search();
+$searchQ = new Dqueue();
+$id = 2;
+echo search($id, $searchQ);
