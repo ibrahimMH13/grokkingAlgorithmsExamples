@@ -1,5 +1,7 @@
 <?php
-
+/***
+ * 1-A graph models a set of connections,
+ */
 function search(){
 
     $deque = new \Ds\Deque();
