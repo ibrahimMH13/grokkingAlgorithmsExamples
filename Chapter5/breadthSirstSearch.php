@@ -23,13 +23,13 @@ list, so the search list needs to be a queue. Otherwise, you won’t get
 the shortest path.
 • Once you check someone, make sure you don’t check them again.
 Otherwise, you might end up in an infinite loop.
-
+-BFS run vertical not horizontal so
 */
 //List as array
 $graph = array(
     'A' => array('B', 'F'),
     'B' => array('A', 'D', 'E','F'),
-    'C' => array('F'),
+    'C' => array('E'),
     'D' => array('B', 'E'),
     'E' => array('B', 'D', 'F'),
     'F' => array('A', 'E', 'C'),
@@ -50,20 +50,36 @@ class Graph
      * $to destination
      */
     public function breadthFirstSearch($from,$to){
+        echo "\t\t\t [BFS STEPS]\n1#make instance from Spl Queue (FIFO)\n";
         $queue = new SplQueue();
+        echo "2#add from (origin) to queue\n";
         $queue->enqueue($from);
+        echo "3#push element into visited array to marked it passed\n";
         array_push($this->visited,$from);
+        echo "4# array buket for paths\n";
         $path = [];
+        echo "4# make step as index and push into  it SqlLinked list\n";
         $path[$from] = new SplDoublyLinkedList();
+        echo "5# change SqlLinked list mode to FIFO ( as queue- First Input First Output)\n";
         $path[$from]->setIteratorMode(SplDoublyLinkedList::IT_MODE_FIFO|SplDoublyLinkedList::IT_MODE_KEEP);
+        echo "6# push itself to into its SqlLinked\n";
         $path[$from]->push($from);
+        echo "7#in loop check if queue is not empty & last queue not destinations[to]\n";
+        $count = 1;
         while (!$queue->isEmpty() && $queue->bottom() != $to){
+            echo "=>\t8/$count#get element from queue\n";
             $point = $queue->dequeue();
+            echo "=>\t9/$count# check is exits or not empty point\n";
             if (!empty($this->graphListArray[$point])){
+                echo "=>\t10/$count# loop into point for all neighbors or direct point\n";
                 foreach ($this->graphListArray[$point] as $step){
+                    echo "=>\t11/$count# check if not visited before\n";
                     if (!in_array($step,$this->visited)){
+                        echo "=>\t12/$count# add neighbors | direct point | step into queue\n";
                         $queue->enqueue($step);
-                        array_push($this->visited,$step);
+                        echo "=>\t13/$count# add step as visited \n";
+                        $this->visited[] = $step;
+                        echo "=>\t14/$count# add step into path with\n";
                         $path[$step] = clone $path[$point];
                         $path[$step]->push($step);
                     }
@@ -88,6 +104,6 @@ class Graph
 }
 
 $q = new Graph($graph);
-$q->breadthFirstSearch('A','F');
+$q->breadthFirstSearch('D','C');
 
 
